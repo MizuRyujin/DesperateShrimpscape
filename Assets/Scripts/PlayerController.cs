@@ -3,15 +3,25 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private PlayerStates _currentState;
-    private Rigidbody _rb;
-    private Collider _selfCollider;
+    private const int _MAX_NOISE_LEVEL = 3;
+    private const int _MIN_NOISE_LEVEL = 1;
+    private const float _MAX_SILENCE_COOLDOWN = 7f;
+
+    [SerializeField] private float _impulseForce = default;
+
+    private PlayerStates _currentState = default;
+    private Rigidbody _rb = default;
+    private Collider _selfCollider = default;
+    private int _noiseLevel = default;
+    private float _silenceCooldown = default;
+    private Vector3 _cursorPos = default;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
     private void Awake()
     {
+        _noiseLevel = 0;
         _currentState = PlayerStates.VISIBLE;
 
         _rb = GetComponent<Rigidbody>();
@@ -25,12 +35,45 @@ public class PlayerController : MonoBehaviour
     {
         PushForward();
         Hide();
+        SoundCooldown();
+        GetCursorPos();
     }
+
+    private void GetCursorPos()
+    {
+        Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit result;
+        if (Physics.Raycast(mouseRay, out result))
+        {
+            _cursorPos = result.point;
+        }
+    }
+
     private void FixedUpdate()
     {
         RotatePlayer();
     }
 
+    private void PushForward()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _noiseLevel = ++_noiseLevel < 3 ? _noiseLevel++ : _MAX_NOISE_LEVEL;
+            _rb.AddForce(transform.forward * _impulseForce * _noiseLevel);
+            IncreaseCooldownTime(2f);
+            // Call moving sound here (_sounds.PlaySound1)
+        }
+    }
+
+    private void IncreaseCooldownTime(float value)
+    {
+        _silenceCooldown = _silenceCooldown > _MAX_SILENCE_COOLDOWN ?
+                            _MAX_SILENCE_COOLDOWN : _silenceCooldown += value;
+    }
+
+    /// <summary>
+    /// Change player state to hidden and disable collider so it wont be found
+    /// </summary>
     private void Hide()
     {
         if (Input.GetKey(KeyCode.C))
@@ -44,14 +87,30 @@ public class PlayerController : MonoBehaviour
             _selfCollider.enabled = true;
         }
     }
+    /// <summary>
+    /// Decrease noise level over time
+    /// </summary>
+    private void SoundCooldown()
+    {
+        if (_silenceCooldown > 0f)
+        {
+            _silenceCooldown -= 1f * Time.deltaTime;
+            if (_silenceCooldown < 4f)
+            {
+                _noiseLevel = 2;
+            }
+            else if (_silenceCooldown < 2f)
+            {
+                _noiseLevel = 1;
+            }
+        }
+    }
 
     private void RotatePlayer()
     {
-        throw new NotImplementedException();
-    }
-
-    private void PushForward()
-    {
-        throw new NotImplementedException();
+        float angle = Vector3.SignedAngle(transform.forward, _cursorPos, transform.up);
+        Vector3 newRot = new Vector3(0, angle, 0);
+        Quaternion deltaRot = Quaternion.Euler(newRot * 10f *Time.fixedDeltaTime);
+        _rb.MoveRotation(_rb.rotation * deltaRot);
     }
 }
