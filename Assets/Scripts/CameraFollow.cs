@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Transform _playerPos;
 
-    // Update is called once per frame
-    void Update()
+    private void LateUpdate()
     {
-        
+        Vector3 moveDir = _playerPos.position - transform.position;
+        moveDir.y = 0;
+        Debug.Log("MoveDir" + moveDir);
+        Debug.Log("MoveDir" + transform.position);
+        transform.Translate(moveDir * Time.deltaTime);
     }
 }

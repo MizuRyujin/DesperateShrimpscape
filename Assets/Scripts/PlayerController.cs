@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private const float _MAX_SILENCE_COOLDOWN = 7f;
 
     [SerializeField] private float _impulseForce = default;
+    // PlayerSounds _sounds;
 
     private PlayerStates _currentState = default;
     private Rigidbody _rb = default;

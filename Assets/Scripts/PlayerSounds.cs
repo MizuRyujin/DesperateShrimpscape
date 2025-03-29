@@ -1,16 +1,16 @@
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class PlayerSounds : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] EventReference _moveSound;
+    EventInstance _event;
 
-    // Update is called once per frame
-    void Update()
+    public void MoveNoise(int noiseLevel)
     {
-        
+        _event = RuntimeManager.CreateInstance(_moveSound);
+        RuntimeManager.AttachInstanceToGameObject(_event, gameObject);
+        _event.setParameterByName("Noise_Level", noiseLevel);
     }
 }
