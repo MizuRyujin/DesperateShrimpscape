@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     private const int _MAX_NOISE_LEVEL = 3;
-    private const int _MIN_NOISE_LEVEL = 1;
+    private const int _MIN_NOISE_LEVEL = 0;
     private const float _MAX_SILENCE_COOLDOWN = 7f;
 
     [SerializeField] private float _impulseForce = default;
@@ -22,7 +21,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        _noiseLevel = 0;
+        _noiseLevel = _MIN_NOISE_LEVEL;
         _currentState = PlayerStates.VISIBLE;
 
         _rb = GetComponent<Rigidbody>();
@@ -40,6 +39,18 @@ public class PlayerController : MonoBehaviour
         Hide();
         SoundCooldown();
         GetCursorPos();
+        RotatePlayer();
+
+        //ShootPebble();
+    }
+
+    private void ShootPebble()
+    {
+        if (Input.GetButtonDown("Mouse 0"))
+        {
+            Debug.Log("Should shoot");
+        }
+        // _sounds.GunSound();
     }
 
     private void GetCursorPos()
@@ -52,18 +63,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        RotatePlayer();
-    }
-
     private void PushForward()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _noiseLevel = ++_noiseLevel < 3 ? _noiseLevel : _MAX_NOISE_LEVEL;
+            _noiseLevel = ++_noiseLevel > 3 ? _MAX_NOISE_LEVEL : _noiseLevel;
             _rb.AddForce(transform.forward * _impulseForce * _noiseLevel);
             IncreaseCooldownTime(2f);
+            Debug.Log("Player noise lvl: " + _noiseLevel);
             _sounds.MoveNoise(_noiseLevel);
         }
     }
@@ -98,22 +105,24 @@ public class PlayerController : MonoBehaviour
         if (_silenceCooldown > 0f)
         {
             _silenceCooldown -= 1f * Time.deltaTime;
-            if (_silenceCooldown < 4f)
+            if (_silenceCooldown < 4f && _silenceCooldown > 2f)
             {
                 _noiseLevel = 2;
             }
-            else if (_silenceCooldown < 2f)
+            else if (_silenceCooldown < 2f && _silenceCooldown > 0f)
             {
                 _noiseLevel = 1;
+            }
+            else
+            {
+                _silenceCooldown = 0f;
+                _noiseLevel = _MIN_NOISE_LEVEL;
             }
         }
     }
 
     private void RotatePlayer()
     {
-        float angle = Vector3.SignedAngle(transform.forward, _cursorPos, transform.up);
-        Vector3 newRot = new Vector3(0, angle, 0);
-        Quaternion deltaRot = Quaternion.Euler(newRot * 10f *Time.fixedDeltaTime);
-        _rb.MoveRotation(_rb.rotation * deltaRot);
+        transform.LookAt(_cursorPos);
     }
 }
