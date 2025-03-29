@@ -11,6 +11,8 @@ public class PlayerSounds : MonoBehaviour
     {
         _event = RuntimeManager.CreateInstance(_moveSound);
         RuntimeManager.AttachInstanceToGameObject(_event, gameObject);
+        Debug.Log("Noise Lvl:" + noiseLevel);
         _event.setParameterByName("Noise_Level", noiseLevel);
+        _event.start();
     }
 }

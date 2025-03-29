@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private const float _MAX_SILENCE_COOLDOWN = 7f;
 
     [SerializeField] private float _impulseForce = default;
-    // PlayerSounds _sounds;
+    private PlayerSounds _sounds;
 
     private PlayerStates _currentState = default;
     private Rigidbody _rb = default;
@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
         _rb.useGravity = false;
 
         _selfCollider = GetComponent<Collider>();
+
+        _sounds = GetComponentInChildren<PlayerSounds>();
     }
 
     // Update is called once per frame
@@ -59,10 +61,10 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _noiseLevel = ++_noiseLevel < 3 ? _noiseLevel++ : _MAX_NOISE_LEVEL;
+            _noiseLevel = ++_noiseLevel < 3 ? _noiseLevel : _MAX_NOISE_LEVEL;
             _rb.AddForce(transform.forward * _impulseForce * _noiseLevel);
             IncreaseCooldownTime(2f);
-            // Call moving sound here (_sounds.PlaySound1)
+            _sounds.MoveNoise(_noiseLevel);
         }
     }
 

@@ -8,8 +8,8 @@ public class CameraFollow : MonoBehaviour
     {
         Vector3 moveDir = _playerPos.position - transform.position;
         moveDir.y = 0;
-        Debug.Log("MoveDir" + moveDir);
-        Debug.Log("MoveDir" + transform.position);
+        // Debug.Log("MoveDir" + moveDir);
+        // Debug.Log("MoveDir" + transform.position);
         transform.Translate(moveDir * Time.deltaTime);
     }
 }

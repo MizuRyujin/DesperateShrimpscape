@@ -477,7 +477,7 @@ MonoBehaviour:
       Data2: 1132664172
       Data3: -2121664368
       Data4: -1899001415
-    Path: event:/Shrimp_Locomotion 2
+    Path: event:/Player/Shrimp_Locomotion 2
 --- !u!1 &1363872644
 GameObject:
   m_ObjectHideFlags: 0
