@@ -1101,7 +1101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _arrow: {fileID: 909499667}
-  _force: 200
+  _force: 1000
 --- !u!1 &1699170734
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,7 +1159,7 @@ GameObject:
   - component: {fileID: 1709311085}
   - component: {fileID: 1709311084}
   - component: {fileID: 1709311088}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pebble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1179,9 +1179,9 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1264,7 +1264,7 @@ Rigidbody:
   m_GameObject: {fileID: 1709311083}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -1274,14 +1274,14 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Constraints: 84
+  m_CollisionDetection: 1
 --- !u!1001 &1774017339
 PrefabInstance:
   m_ObjectHideFlags: 0

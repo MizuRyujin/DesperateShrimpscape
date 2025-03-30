@@ -4,7 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     private const int _MAX_NOISE_LEVEL = 3;
     private const int _MIN_NOISE_LEVEL = 0;
-    private const float _MAX_SILENCE_COOLDOWN = 7f;
+    private const float _MAX_SILENCE_COOLDOWN = 8f;
 
     [SerializeField] private float _impulseForce = default;
     private PlayerSounds _sounds;
@@ -35,23 +35,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        PushForward();
-        Hide();
-        SoundCooldown();
         GetCursorPos();
         RotatePlayer();
-
-        //ShootPebble();
+        PushForward();
+        //Hide();
+        SoundCooldown();
     }
 
-    private void ShootPebble()
-    {
-        if (Input.GetButtonDown("Mouse 0"))
-        {
-            Debug.Log("Should shoot");
-        }
-        // _sounds.GunSound();
-    }
 
     private void GetCursorPos()
     {
@@ -65,7 +55,11 @@ public class PlayerController : MonoBehaviour
 
     private void PushForward()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && _currentState != PlayerStates.TIRED)
+        Debug.Log(_currentState);
+
+        if (_currentState == PlayerStates.TIRED) return;
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             _noiseLevel = ++_noiseLevel > 3 ? _MAX_NOISE_LEVEL : _noiseLevel;
             _rb.AddForce(transform.forward * _impulseForce * _noiseLevel);
@@ -76,10 +70,15 @@ public class PlayerController : MonoBehaviour
 
     private void IncreaseCooldownTime(float value)
     {
-        _silenceCooldown = _silenceCooldown > _MAX_SILENCE_COOLDOWN ?
-                            _MAX_SILENCE_COOLDOWN : _silenceCooldown += value;
+        _silenceCooldown += value;
+
+        if (_silenceCooldown >= _MAX_SILENCE_COOLDOWN)
+            _silenceCooldown = _MAX_SILENCE_COOLDOWN;
+
+
         if (_silenceCooldown > 6f)
         {
+            Debug.Log("Player Tired");
             _currentState = PlayerStates.TIRED;
         }
     }
@@ -112,16 +111,16 @@ public class PlayerController : MonoBehaviour
             {
                 _noiseLevel = 2;
             }
-            else if (_silenceCooldown < 2f && _silenceCooldown > 0f)
+            else if (_silenceCooldown < 2f && _silenceCooldown > 0.1f)
             {
                 _noiseLevel = 1;
             }
-            else
-            {
-                _silenceCooldown = 0f;
-                _noiseLevel = _MIN_NOISE_LEVEL;
-                _currentState = PlayerStates.NORMAL;
-            }
+        }
+        else if (_silenceCooldown <= 0f)
+        {
+            Debug.Log("Returning to normal");
+            _noiseLevel = _MIN_NOISE_LEVEL;
+            _currentState = PlayerStates.NORMAL;
         }
     }
 
