@@ -55,8 +55,6 @@ public class PlayerController : MonoBehaviour
 
     private void PushForward()
     {
-        Debug.Log(_currentState);
-
         if (_currentState == PlayerStates.TIRED) return;
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -78,7 +76,6 @@ public class PlayerController : MonoBehaviour
 
         if (_silenceCooldown > 6f)
         {
-            Debug.Log("Player Tired");
             _currentState = PlayerStates.TIRED;
         }
     }
@@ -118,7 +115,6 @@ public class PlayerController : MonoBehaviour
         }
         else if (_silenceCooldown <= 0f)
         {
-            Debug.Log("Returning to normal");
             _noiseLevel = _MIN_NOISE_LEVEL;
             _currentState = PlayerStates.NORMAL;
         }

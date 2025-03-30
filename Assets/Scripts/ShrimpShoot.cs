@@ -25,8 +25,13 @@ public class ShrimpShoot : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 hits[0].attachedRigidbody.AddForce(transform.parent.forward * _force);
+                _sounds.GunSound();
                 _arrow?.SetActive(false);
             }
+        }
+        else
+        {
+            _arrow?.SetActive(false);
         }
     }
     private void OnDrawGizmos()
