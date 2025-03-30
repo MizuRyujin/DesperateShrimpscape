@@ -63,6 +63,18 @@ public class PlayerController : MonoBehaviour
             _rb.AddForce(transform.forward * _impulseForce * _noiseLevel);
             IncreaseCooldownTime(2f);
             _sounds.MoveNoise(_noiseLevel);
+
+            int nHits;
+            Collider[] result = new Collider[10];
+            nHits = Physics.OverlapSphereNonAlloc(transform.position, 10f, result, LayerMask.GetMask("Plant"));
+            if (nHits > 0)
+            {
+                for (int i = 0; i < result.Length; i++)
+                {
+
+                    result[i]?.gameObject.GetComponent<PlantLight>().LightUp();
+                }
+            }
         }
     }
 

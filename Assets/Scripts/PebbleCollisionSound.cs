@@ -22,7 +22,7 @@ public class PebbleCollisionSound : MonoBehaviour
             {
                 foreach (Collider col in result)
                 {
-                    col.gameObject.GetComponent<PlantLight>();
+                    col.gameObject.GetComponent<PlantLight>().LightUp();
                 }
             }
         }
