@@ -51,6 +51,13 @@ MonoBehaviour:
       Data3: -2121664368
       Data4: -1899001415
     Path: event:/Player/Shrimp_Locomotion 2
+  _gunSound:
+    Guid:
+      Data1: 975500347
+      Data2: 1316881738
+      Data3: 1266431669
+      Data4: 1745811082
+    Path: event:/Player/Srimp_Gun
 --- !u!1 &6133621034182323675
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,8 +217,8 @@ Light:
   m_Color: {r: 1, g: 0.9339623, b: 0.7028302, a: 1}
   m_Intensity: 100
   m_Range: 16.9
-  m_SpotAngle: 55
-  m_InnerSpotAngle: 10
+  m_SpotAngle: 179
+  m_InnerSpotAngle: 58.479164
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -311,13 +318,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8642971019118773662}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.02, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4673419329761381805}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &2732415444894036616
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -325,7 +332,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8642971019118773662}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &3342010728676720012
 MeshRenderer:
   m_ObjectHideFlags: 0
