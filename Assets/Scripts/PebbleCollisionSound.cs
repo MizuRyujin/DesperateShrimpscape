@@ -15,6 +15,16 @@ public class PebbleCollisionSound : MonoBehaviour
             _event = RuntimeManager.CreateInstance(_pebbleSound);
             RuntimeManager.AttachInstanceToGameObject(_event, gameObject);
             _event.start();
+            int nHits;
+            Collider[] result = new Collider[10];
+            nHits = Physics.OverlapSphereNonAlloc(transform.position, 10f, result, LayerMask.GetMask("Plant"));
+            if (nHits > 0)
+            {
+                foreach (Collider col in result)
+                {
+                    col.gameObject.GetComponent<PlantLight>();
+                }
+            }
         }
     }
 }
