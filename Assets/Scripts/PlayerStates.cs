@@ -1,6 +1,7 @@
 public enum PlayerStates
 {
     PAUSED,
-    VISIBLE,
+    NORMAL,
     HIDDEN,
+    TIRED,
 }

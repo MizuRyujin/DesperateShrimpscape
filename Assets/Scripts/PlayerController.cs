@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _noiseLevel = _MIN_NOISE_LEVEL;
-        _currentState = PlayerStates.VISIBLE;
+        _currentState = PlayerStates.NORMAL;
 
         _rb = GetComponent<Rigidbody>();
         _rb.useGravity = false;
@@ -65,12 +65,11 @@ public class PlayerController : MonoBehaviour
 
     private void PushForward()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && _currentState != PlayerStates.TIRED)
         {
             _noiseLevel = ++_noiseLevel > 3 ? _MAX_NOISE_LEVEL : _noiseLevel;
             _rb.AddForce(transform.forward * _impulseForce * _noiseLevel);
             IncreaseCooldownTime(2f);
-            Debug.Log("Player noise lvl: " + _noiseLevel);
             _sounds.MoveNoise(_noiseLevel);
         }
     }
@@ -79,6 +78,10 @@ public class PlayerController : MonoBehaviour
     {
         _silenceCooldown = _silenceCooldown > _MAX_SILENCE_COOLDOWN ?
                             _MAX_SILENCE_COOLDOWN : _silenceCooldown += value;
+        if (_silenceCooldown > 6f)
+        {
+            _currentState = PlayerStates.TIRED;
+        }
     }
 
     /// <summary>
@@ -93,7 +96,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            _currentState = PlayerStates.VISIBLE;
+            _currentState = PlayerStates.NORMAL;
             _selfCollider.enabled = true;
         }
     }
@@ -117,6 +120,7 @@ public class PlayerController : MonoBehaviour
             {
                 _silenceCooldown = 0f;
                 _noiseLevel = _MIN_NOISE_LEVEL;
+                _currentState = PlayerStates.NORMAL;
             }
         }
     }

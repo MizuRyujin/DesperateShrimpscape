@@ -138,7 +138,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 84
   m_CollisionDetection: 1
 --- !u!135 &3099061254555431507
@@ -391,6 +391,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 459492769650044102}
     m_Modifications:
+    - target: {fileID: 3008346975207325518, guid: 2e6179cf7fa34d14bb87573b531c289c, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5731793054325759908, guid: 2e6179cf7fa34d14bb87573b531c289c, type: 3}
       propertyPath: m_Name
       value: BubbleTrail
@@ -405,7 +409,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6561888417108146012, guid: 2e6179cf7fa34d14bb87573b531c289c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.77
       objectReference: {fileID: 0}
     - target: {fileID: 6561888417108146012, guid: 2e6179cf7fa34d14bb87573b531c289c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -496,6 +500,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 901724027612614949, guid: 7672c34f34ddb3744a19c7f1c85af774, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112371428783671364, guid: 7672c34f34ddb3744a19c7f1c85af774, type: 3}
+      propertyPath: EmissionModule.m_BurstCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112371428783671364, guid: 7672c34f34ddb3744a19c7f1c85af774, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8262436300311827442, guid: 7672c34f34ddb3744a19c7f1c85af774, type: 3}
