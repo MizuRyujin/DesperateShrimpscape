@@ -443,7 +443,7 @@ GameObject:
   - component: {fileID: 194925008}
   - component: {fileID: 194925007}
   - component: {fileID: 194925010}
-  - component: {fileID: 194925009}
+  - component: {fileID: 194925011}
   m_Layer: 0
   m_Name: DeathWave
   m_TagString: Untagged
@@ -480,37 +480,6 @@ Transform:
   - {fileID: 1827256793}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &194925009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194925006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 631096885
-      Data2: 1113409282
-      Data3: -52963394
-      Data4: 197505063
-    Path: event:/Wall/WallFirst_Signal
-  Event: 
-  EventPlayTrigger: 1
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!114 &194925010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,6 +511,37 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 10
   OverrideMaxDistance: 60
+--- !u!114 &194925011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194925006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 631096885
+      Data2: 1113409282
+      Data3: -52963394
+      Data4: 197505063
+    Path: event:/Wall/WallFirst_Signal
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &320768518
 PrefabInstance:
   m_ObjectHideFlags: 0
