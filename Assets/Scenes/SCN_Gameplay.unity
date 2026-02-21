@@ -444,6 +444,7 @@ GameObject:
   - component: {fileID: 194925007}
   - component: {fileID: 194925010}
   - component: {fileID: 194925011}
+  - component: {fileID: 194925012}
   m_Layer: 0
   m_Name: DeathWave
   m_TagString: Untagged
@@ -542,6 +543,27 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!65 &194925012
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194925006}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 100, y: 1, z: 1000}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &320768518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4573,7 +4595,6 @@ GameObject:
   - component: {fileID: 1827256793}
   - component: {fileID: 1827256796}
   - component: {fileID: 1827256795}
-  - component: {fileID: 1827256797}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -4649,27 +4670,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827256792}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &1827256797
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1827256792}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 7, y: 2.220446e-16, z: 10}
-  m_Center: {x: -3.14, y: 0, z: 0}
 --- !u!1001 &1930828614
 PrefabInstance:
   m_ObjectHideFlags: 0
